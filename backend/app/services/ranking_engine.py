@@ -79,7 +79,8 @@ class IntelligentRankingEngine:
         candidates: List[CandidateProfile],
         blind_mode: bool = False,
         required_experience_years: int = 0,
-        mandatory_skills: Optional[List[str]] = None
+        mandatory_skills: Optional[List[str]] = None,
+        top_k_rerank: int = 500
     ) -> List[Dict[str, Any]]:
         """
         Calculates individual component scores and ranks all candidates by composite score.
@@ -140,7 +141,7 @@ class IntelligentRankingEngine:
             w_experience /= total_w
 
         # Stage 1: Fast Heuristic Retrieval Filter for Scalability
-        is_large_pool = len(candidates) > 500
+        is_large_pool = len(candidates) > top_k_rerank
         if is_large_pool:
             logger.info(f"Large candidate pool detected ({len(candidates)}). Initializing Stage-1 filtering...")
             retrieval_scores = []
@@ -165,10 +166,10 @@ class IntelligentRankingEngine:
                 ret_score = (skill_score * 0.5) + (title_score * 0.3) + (beh_score * 0.2)
                 retrieval_scores.append(ret_score)
                 
-            # Select indices of the top 500 candidates
-            top_k_indices = np.argsort(retrieval_scores)[-500:][::-1]
+            # Select indices of the top K candidates
+            top_k_indices = np.argsort(retrieval_scores)[-top_k_rerank:][::-1]
             candidates_to_rank = [candidates[i] for i in top_k_indices]
-            logger.info(f"Stage-1 filtering complete. Top 500 candidates selected for Stage-2 semantic reranking.")
+            logger.info(f"Stage-1 filtering complete. Top {top_k_rerank} candidates selected for Stage-2 semantic reranking.")
         else:
             candidates_to_rank = candidates
 

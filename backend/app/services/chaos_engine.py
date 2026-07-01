@@ -93,7 +93,8 @@ class ChaosSimulationEngine:
             ranked_candidates = ranking_engine.rank_candidates(
                 job=job_desc,
                 candidates=candidates,
-                blind_mode=blind_mode
+                blind_mode=blind_mode,
+                top_k_rerank=30
             )
             
             # Limit to top 15 candidates to avoid excessive sentence-level encoding latency
