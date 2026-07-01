@@ -95,6 +95,9 @@ class ChaosSimulationEngine:
                 candidates=candidates,
                 blind_mode=blind_mode
             )
+            
+            # Limit to top 15 candidates to avoid excessive sentence-level encoding latency
+            ranked_candidates = ranked_candidates[:15]
 
 
             # Generate query embedding once for semantic proof snippet extraction
