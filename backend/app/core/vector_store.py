@@ -42,7 +42,6 @@ class InMemoryTalentStore:
         self._initialized = True
         
         logger.info("Initializing InMemoryTalentStore singleton instance...")
-        self.seed_initial_profiles()
 
     def add_candidate(self, candidate: CandidateProfile) -> None:
         """
