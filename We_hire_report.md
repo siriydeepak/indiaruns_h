@@ -31,7 +31,7 @@ graph TD
 
 ---
 
-## 🔥 Key Technical Highlights (Pitch-Ready)
+## 🔥 Key Technical Highlights 
 
 ### 1. Zero-Latency Local Vector Embedding Engine (Sentence-Transformers)
 - **Data Privacy (GDPR/PII Compliant)**: By using a local `all-MiniLM-L6-v2` dense vector model (384 dimensions) running directly in the Python runtime, no candidate resume text or PII is sent to external APIs (OpenAI/Claude).
@@ -101,9 +101,3 @@ class DiscoveryRequest(BaseModel):
 
 ---
 
-## 📈 Demo Script for Hackathon Presentation
-1. **Open Console**: Show the premium, glassmorphic UI with emerald highlights and active HUD telemetry.
-2. **Add Custom Role**: Click `+ Custom Role`, type `"Quantum Computing Dev"` or `"Blockchain Specialist"`, and press Enter. 
-3. **Show Autocomplete**: Point out how the console autocompletes the 3 paragraphs and applies specific override tags (e.g., `Solidity`, `Rust`, `Web3.js`, `Smart Contracts`).
-4. **Demonstrate Live Recalculation**: Type `Must know cryptography.` at the end of the Job Spec. Show how the results instantly clear, show a skeleton state, and then update automatically after a 1.2s pause, updating the candidate rankings on-the-fly.
-5. **Teleport deep-dive**: Click on a candidate to slide out their detailed behavioral index telemetry drawer.
